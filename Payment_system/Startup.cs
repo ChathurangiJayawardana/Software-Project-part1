@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Payment_system.Models;
 
 namespace Payment_system
 {
@@ -33,6 +35,9 @@ namespace Payment_system
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<Payment_systemContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Payment_systemContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
